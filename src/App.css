@@ -1,3 +1,11 @@
+.active {
+  color: #3ad7d7;
+  font-weight: bold;
+  width: fit-content;
+  border-radius: 3px;
+}
+
+
 .App {
   text-align: center;
 }

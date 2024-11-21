@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "id": "eadf",
+      "name": "Intekhabul Haque",
+      "email": "connect.foodoos@gmail.com",
+      "role": "Admin",
+      "status": "active"
+    },
+    {
+      "id": "136c",
+      "name": "John Doe",
+      "email": "lovely@gmail.com",
+      "role": "User",
+      "status": "active"
+    },
+    {
+      "id": "c9f7",
+      "name": "Arif",
+      "email": "intekhabulhaque26@gmail.com",
+      "role": "Dev",
+      "status": "active"
+    },
+    {
+      "id": "b0c6",
+      "name": "John Doe2",
+      "email": "arif1@gmail.com",
+      "role": "Dev",
+      "status": "inactive"
+    },
+    {
+      "id": "d841",
+      "name": "Arif1",
+      "email": "arif@123",
+      "role": "Admin",
+      "status": "active"
+    },
+    {
+      "id": "455b",
+      "name": "Intekhabul Haque 12",
+      "email": "intekhabulhaque92@gmail.com",
+      "role": "User",
+      "status": "active"
+    },
+    {
+      "id": "eb5a",
+      "name": "John Doe",
+      "email": "connect.foodoos@gmail.com",
+      "role": "Dev",
+      "status": "inactive"
+    }
+  ],
+  "roles": [
+    {
+      "id": "c4f4",
+      "name": "Admin",
+      "permissions": [
+        "create",
+        "read",
+        "write",
+        "delete"
+      ]
+    },
+    {
+      "id": "c0d5",
+      "name": "Dev",
+      "permissions": [
+        "read",
+        "write"
+      ]
+    },
+    {
+      "id": "3a4d",
+      "name": "User",
+      "permissions": [
+        "read"
+      ]
+    }
+  ]
+}
