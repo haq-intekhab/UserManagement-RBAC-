@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# User and Role Management Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
 
-## Available Scripts
+Follow these steps to set up and run the application:
 
-In the project directory, you can run:
+### Clone the Repository
 
-### `npm start`
+```bash
+git clone https://github.com/UserManagement-RBAC-.git
+cd UserManagement-RBAC-
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Install the required dependencies for the React app:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Install the required dependencies for the React app
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Start the JSON Server
 
-### `npm run build`
+Start the JSON server for handling backend APIs
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run server
+```
+The JSON server will run at: http://localhost:5000/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Start the React Application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run the React development server:
 
-### `npm run eject`
+```bash
+npm run start
+```
+The React app will be live at: http://localhost:3000/
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Application Details
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+📋 Application Flow
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Home Page:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+A welcoming page with a Greeting.
 
-## Learn More
+2. Users Page:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Displays a list of users.
+Allows operations like adding, editing, and deleting users.
+Includes sorting, searching, and pagination functionalities.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Roles Page:
 
-### Code Splitting
+Displays a list of roles.
+Allows operations like adding, editing, and deleting roles.
+Users can assign permissions to roles.
+Includes pagination functionality.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Features and Functionalities
 
-### Analyzing the Bundle Size
+1. Sorting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Users can be sorted by Name, Email, or Status.
+Implemented using the sort() method.
 
-### Making a Progressive Web App
+2. Searching
+   
+Search functionality filters users by Name or Email.
+Provides real-time filtering as the user types.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Pagination
 
-### Advanced Configuration
+Displays a subset of users or roles on each page.
+Includes navigation buttons for "Previous" and "Next".
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. CRUD Operations
 
-### Deployment
+Users:
+Add new users.
+Edit existing users.
+Delete users.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Roles:
+Add new roles.
+Edit existing roles.
+Assign permissions to roles.
+Delete roles.
 
-### `npm run build` fails to minify
+5. Permissions Management
+   
+Assign permissions like Create, Read, Update, and Delete to roles.
+Dynamically updates the role's permission list.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+6. Responsive Design
+Fully responsive UI built with Tailwind CSS.
+Works seamlessly across mobile, tablet, and desktop devices.
+
+### Pages, Components and Contexts
+
+Pages:
+
+1. Home Page: 
+Simple greeting and introduction to the application.
+
+2. Users Page:
+Manages user data with all CRUD operations, sorting, searching, and pagination.
+
+3. Roles Page:
+Manages roles, including assigning permissions and CRUD operations.
+
+Components:
+
+1. NavBar: Navigation between pages.
+2. Modal: Reusable modal for forms.
+3. UserForm: Form for adding/editing users.
+4. RoleForm: Form for adding/editing roles and assigning permissions.
+5. UserList: To render all the users with editing and deleting functionality.
+6. RoleList: To render all the roles with editing and deleting functionality.
+
+Contexts: 
+
+1. UserContext: It centralized storage to store and manage state of the users data with all methods.
+2. RoleContext: It centralized storage to store and manage state of the roles data with all methods.
+
+### Technologies Used
+
+Technology ->	Purpose
+React.js ->	Frontend framework for building the UI.
+JSON Server ->	Backend mock server for API handling.
+Axios -> For making API requests.
+CSS (Tailwind) ->	For responsive and modern UI styling.
+React Router ->	For navigation and routing between pages.
+react-hot-toast -> To give notification on every operation.
+react-icons -> To improve the user-interface.
+
+### API Endpoints
+Method ->	Endpoint ->	Description
+GET -> /users ->	Fetch all users.
+POST ->	/users ->	Add a new user.
+PUT ->	/users/:id ->	Update a specific user.
+DELETE ->	/users/:id ->	Delete a specific user.
+GET ->	/roles ->	Fetch all roles.
+POST ->	/roles ->	Add a new role.
+PUT ->	/roles/:id ->	Update a specific role.
+DELETE ->	/roles/:id ->	Delete a specific role.
+
+### Thank you for using the User and Role Management Application! 😊
