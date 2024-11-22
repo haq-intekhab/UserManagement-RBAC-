@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { RoleContext } from "../context/RoleContext"; // Import RoleContext
+import { RoleContext } from "../context/RoleContext";
 
 const UserForm = ({ onClose, user }) => {
-  const { addUser, updateUser } = useContext(UserContext); // Add updateUser to the context
-  const { roles } = useContext(RoleContext); // Use RoleContext to get roles
+  const { addUser, updateUser } = useContext(UserContext);
+  const { roles } = useContext(RoleContext);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -41,7 +41,7 @@ const UserForm = ({ onClose, user }) => {
       addUser(formData); // Add new user if `user` is not passed
     }
 
-    onClose(); // Close the form modal
+    onClose();
   };
 
   return (
@@ -53,6 +53,7 @@ const UserForm = ({ onClose, user }) => {
           <input
             type="text"
             name="name"
+            placeholder="Enter user name"
             value={formData.name}
             onChange={handleChange}
             className="border w-full px-3 py-2"
@@ -64,6 +65,7 @@ const UserForm = ({ onClose, user }) => {
           <input
             type="email"
             name="email"
+            placeholder="Enter user email"
             value={formData.email}
             onChange={handleChange}
             className="border w-full px-3 py-2"
@@ -100,7 +102,7 @@ const UserForm = ({ onClose, user }) => {
           </select>
         </div>
         <div className="flex justify-end">
-          <button type="button" onClick={onClose} className="mr-2">
+          <button type="button" onClick={onClose} className="mr-4">
             Cancel
           </button>
           <button type="submit" className="bg-[#3ad7d7] text-white px-4 py-2 rounded">

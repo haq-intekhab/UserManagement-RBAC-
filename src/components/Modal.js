@@ -1,4 +1,5 @@
 import React from "react";
+import { RxCross2 } from "react-icons/rx";
 
 const Modal = ({ children, onClose }) => {
   return (
@@ -6,9 +7,9 @@ const Modal = ({ children, onClose }) => {
       <div className="bg-white p-6 rounded w-full max-w-md mx-4 sm:mx-0 sm:w-2/3 relative">
         <button
           onClick={onClose}
-          className="text-red-500 absolute top-2 right-3 text-3xl"
+          className="text-red-500 absolute top-3 right-3 text-2xl"
         >
-          &times;
+          <RxCross2 />
         </button>
         {children}
       </div>

@@ -1,11 +1,11 @@
-import React from "react";
+import {React, useState} from "react";
 import UserList from "../components/UserList";
 import UserForm from "../components/UserForm";
 import Modal from "../components/Modal";
 
 const UsersPage = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const [modalContent, setModalContent] = React.useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   const openUserForm = () => {
     setModalContent(<UserForm onClose={() => setShowModal(false)} />);

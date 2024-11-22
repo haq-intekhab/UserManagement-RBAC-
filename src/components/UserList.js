@@ -4,11 +4,22 @@ import Modal from "./Modal";
 import UserForm from "./UserForm";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
+import { CiSearch } from "react-icons/ci";
 
 const UserList = () => {
-  const { users, deleteUser} = useContext(UserContext);
+  const { users, setUsers, deleteUser } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [sortType, setSortType] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter users based on search query
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.role.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const openEditForm = (user) => {
     setSelectedUser(user);
@@ -18,6 +29,31 @@ const UserList = () => {
   const closeModal = () => {
     setShowModal(false);
     setSelectedUser(null);
+  };
+
+  const handleSortChange = (e) => {
+    const sortValue = e.target.value;
+    console.log(sortValue);
+    setSortType(sortValue);
+    sortData(sortValue);
+  };
+
+  const sortData = (type) => {
+    let newData = [...users];
+    switch (type) {
+      case "Name":
+        newData.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "Email":
+        newData.sort((a, b) => a.email.localeCompare(b.email));
+        break;
+      case "Status":
+        newData.sort((a, b) => a.status.localeCompare(b.status));
+        break;
+      default:
+        break;
+    }
+    setUsers(newData);
   };
 
   const Pagination = ({ data }) => {
@@ -78,6 +114,9 @@ const UserList = () => {
     return (
       <div>
         {/* Render the current page's data */}
+        {filteredUsers.length === 0 && (
+          <p className="text-center mt-4 text-[#1C2434] text-[14px] font-semibold">No users found.</p>
+        )}
         {currentPageData()?.map((user, i) => (
           <div key={i} className="w-full flex gap-2 px-1 py-4 md:p-4 border-b">
             <div className="w-[40%] md:w-[50%] flex gap-2 md:justify-between items-center">
@@ -111,7 +150,7 @@ const UserList = () => {
                   {user.status}
                 </p>
               </div>
-              <div className="w-[50%] flex flex-col md:flex-row gap-1  md:justify-evenly">
+              <div className="w-[50%] flex flex-col md:flex-row gap-1 md:gap-4 justify-center">
                 <button
                   onClick={() => openEditForm(user)}
                   className="bg-[#61e0b6] text-white py-1 md:px-6 md:py-2 rounded-md"
@@ -128,7 +167,7 @@ const UserList = () => {
             </div>
           </div>
         ))}
-        <div className="flex justify-between px-8  mt-7 sm:flex-row flex-col sm:gap-0 gap-4">
+        <div className="flex justify-between items-center px-8  mt-7 sm:flex-row flex-col sm:gap-0 gap-4">
           {/* Pagination controls */}
           {/* Dropdown for items per page */}
           <div className="items-per-page">
@@ -173,6 +212,33 @@ const UserList = () => {
 
   return (
     <div className="w-max-screen h-fit relativ sm:mb-0 mb-10 ">
+      <div className="w-full flex gap-4 sm:px-6 px-4">
+        <div className="w-full flex justify-between items-center bg-[#F7F9FC] pt-2 pb-4 px-4">
+          <div className="relative sm:w-[20%] w-full flex items-center rounded-md border border-[#3ad7d7]">
+            <select
+              name="sort_by"
+              value={sortType}
+              onChange={handleSortChange}
+              className="w-full sm:py-2 py-4 px-2 rounded-lg outline-none"
+            >
+              <option value="">Sort By</option>
+              <option value="Name">Name</option>
+              <option value="Email">Email</option>
+              <option value="Status">Status</option>
+            </select>
+          </div>
+          <div className="relative sm:w-[35%] w-full flex items-center rounded-md border border-[#3ad7d7]  ">
+            <input
+              className="w-full sm:py-2 py-4 px-8 rounded-lg"
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search users ..."
+            />
+            <CiSearch className="absolute text-[1.3rem] font-semibold ml-2 " />
+          </div>
+        </div>
+      </div>
       <div className="w-full mb-6 mt-3 px-4">
         <div className="w-full h-fit bg-white px-1 py-4 shadow-md">
           <div className="w-full bg-[#F7F9FC] flex p-4">
@@ -202,7 +268,7 @@ const UserList = () => {
           </div>
 
           <div className="w-full h-fit ">
-            <Pagination data={users} />
+            <Pagination data={filteredUsers} />
           </div>
         </div>
       </div>

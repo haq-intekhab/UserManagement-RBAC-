@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import { RoleContext } from "../context/RoleContext"; // Import RoleContext
+import { RoleContext } from "../context/RoleContext";
 
 const RoleForm = ({ onClose, role }) => {
-  const { addRole, updateRole } = useContext(RoleContext); // Assuming updateRole is available in the context
+  const { addRole, updateRole } = useContext(RoleContext);
 
   const [formData, setFormData] = useState({
     name: "",
     permissions: [],
   });
 
-  const availablePermissions = ["create", "read", "write", "delete"]; // Predefined permissions
+  const availablePermissions = ["create", "read", "write", "delete"];
 
   // Set the form data if editing a role
   useEffect(() => {
@@ -62,6 +62,7 @@ const RoleForm = ({ onClose, role }) => {
           <input
             type="text"
             name="name"
+            placeholder="Enter role name"
             value={formData.name}
             onChange={handleChange}
             className="border w-full px-3 py-2"
@@ -87,7 +88,7 @@ const RoleForm = ({ onClose, role }) => {
           </div>
         </div>
         <div className="flex justify-end">
-          <button type="button" onClick={onClose} className="mr-2">
+          <button type="button" onClick={onClose} className="mr-4">
             Cancel
           </button>
           <button type="submit" className="bg-[#3ad7d7] text-white px-4 py-2 rounded">

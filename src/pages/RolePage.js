@@ -1,11 +1,11 @@
-import React from "react";
+import {React, useState} from "react";
 import RoleList from "../components/RoleList";
 import RoleForm from "../components/RoleForm";
 import Modal from "../components/Modal";
 
 const RolesPage = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const [modalContent, setModalContent] = React.useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   const openRoleForm = () => {
     setModalContent(<RoleForm onClose={() => setShowModal(false)} />);
@@ -13,8 +13,8 @@ const RolesPage = () => {
   };
 
   return (
-    <div className="w-full px-8 py-4 mt-[70px]">
-      <div className="flex justify-between items-center mb-4">
+    <div className="w-full mt-[70px]">
+      <div className="flex px-8 py-4 justify-between items-center mb-4">
         <p className="text-xl font-semibold mb-4">Roles</p>
         <button
           onClick={openRoleForm}
